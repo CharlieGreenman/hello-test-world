@@ -1,0 +1,29 @@
+{
+  "name": "hello-test-world-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/hello-test-world-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/hello-test-world-e2e/cypress.json",
+        "devServerTarget": "hello-test-world:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "hello-test-world:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/hello-test-world-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["hello-test-world"]
+}
